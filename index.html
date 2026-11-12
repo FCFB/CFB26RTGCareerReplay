@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RTG Career Replay</title>
+<style>
+:root{--navy:#10213d;--blue:#24558d;--blue2:#eaf1f9;--ink:#172338;--muted:#66758a;--line:#dce3ec;--bg:#f3f6fa;--white:#fff;--green:#176b48;--gold:#fff5d9}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+header{background:var(--navy);color:white;padding:16px 20px}.top{max-width:980px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:12px}.brand{font-weight:800;letter-spacing:.02em}.tag{font-size:.8rem;color:#cbd8e9}
+main{max-width:900px;margin:28px auto;padding:0 16px 50px}.card{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:clamp(18px,4vw,30px);box-shadow:0 5px 20px #14233a08}
+.hero{text-align:center;padding:clamp(28px,7vw,58px) clamp(18px,4vw,36px)}.eyebrow{color:var(--blue);font-weight:800;text-transform:uppercase;letter-spacing:.12em;font-size:.76rem}
+h1{font-size:clamp(2rem,6vw,3.3rem);line-height:1.05;margin:12px 0;color:var(--navy)}h2{font-size:1.45rem;color:var(--navy);margin:0 0 8px}h3{font-size:1.05rem;color:var(--blue);margin:22px 0 10px}
+.lead{max-width:650px;margin:0 auto 22px;color:var(--muted);font-size:1.05rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin:20px 0}
+label{display:block;font-weight:700;font-size:.9rem;margin-bottom:6px}
+input,select{width:100%;border:1px solid #bcc8d7;border-radius:10px;padding:11px 12px;background:white;color:var(--ink);font:inherit}
+input:focus,select:focus{outline:3px solid #c9dcf3;border-color:var(--blue)}
+button{border:0;border-radius:10px;padding:12px 18px;font:700 .96rem system-ui;cursor:pointer}
+.primary{background:var(--blue);color:white}.primary:hover{background:#193f6c}.secondary{background:var(--blue2);color:var(--navy)}.ghost{background:transparent;color:var(--blue);border:1px solid var(--line)}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.actions .primary{margin-left:auto}
+.center{text-align:center}.hint{font-size:.88rem;color:var(--muted)}.callout{background:var(--blue2);border-radius:12px;padding:15px 17px;margin:17px 0}.callout strong{color:var(--navy)}
+.progress-wrap{margin-bottom:16px}.progress-top{display:flex;justify-content:space-between;gap:10px;color:var(--muted);font-size:.85rem;margin-bottom:7px}.track{height:8px;background:#e0e7f0;border-radius:20px;overflow:hidden}.fill{height:100%;background:var(--blue);width:0;transition:width .2s}
+.step-title{display:flex;align-items:flex-start;gap:12px;margin-bottom:20px}.step-num{width:38px;height:38px;border-radius:12px;background:var(--blue2);color:var(--blue);display:grid;place-items:center;font-weight:850;flex:none}
+.season-block{padding:16px 0;border-top:1px solid var(--line)}.season-block:first-of-type{border-top:0}
+.pair-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.pair{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fbfcfe}.pair-title{font-weight:750;font-size:.92rem;margin-bottom:9px}.pair .cols{display:grid;grid-template-columns:1fr 1fr;gap:8px}.pair label{font-size:.76rem;color:var(--muted);margin-bottom:4px}.pair select{padding:8px;font-size:.88rem}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}.stat{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fbfcfe}.stat strong{display:block;font-size:.9rem;margin-bottom:8px}.stat small{color:var(--muted);font-weight:500}
+.stat .cols{display:grid;grid-template-columns:1fr 1fr;gap:8px}.stat label{font-size:.76rem;color:var(--muted);margin-bottom:4px}
+.notice{padding:12px 14px;border-radius:10px;background:var(--gold);color:#73540c;margin:12px 0}.error{background:#ffeded;color:#8d2828}.success{background:#e9f6ee;color:var(--green)}
+.hidden{display:none!important}.score{background:var(--navy);color:white;border-radius:16px;padding:24px;text-align:center;margin-top:16px}.score-num{font-size:clamp(2.7rem,8vw,4rem);font-weight:900;line-height:1.15}.score-sub{color:#d5e1f0}.breakdown{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:10px;margin-top:14px}.metric{background:#f2f5f9;border-radius:12px;padding:13px}.metric b{display:block;color:var(--navy);font-size:1.18rem}.smallprint{font-size:.8rem;color:var(--muted);text-align:center;margin-top:20px}
+@media(max-width:520px){main{margin:16px auto}.top{align-items:flex-start;flex-direction:column}.actions button{flex:1}.actions .primary{margin-left:0}.pair-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="top"><div class="brand">🏈 RTG CAREER REPLAY</div><div class="tag">CFB 26 · Career comparison</div></div></header>
+<main>
+<section id="welcome" class="card hero">
+ <div class="eyebrow">Build your career challenge</div>
+ <h1>Choose your player.</h1>
+ <p class="lead">Recreate a real college football career in Road to Glory, one stage at a time. You'll compare your RTG player's recruiting, seasons, stats, and achievements against the real player.</p>
+ <div class="callout" style="text-align:left"><strong>Coming soon:</strong> Built-in player profiles so you can choose a real player and have their career details preloaded.</div>
+ <div class="grid" style="text-align:left">
+  <div><label for="position">Player position</label><select id="position"><option value="QB">Quarterback (QB)</option><option value="HB">Halfback (HB)</option><option value="WR">Wide receiver (WR)</option><option value="MLB">Middle linebacker (MLB)</option><option value="CB">Cornerback (CB)</option></select></div>
+  <div><label for="years">College seasons played</label><select id="years"><option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option><option>6</option></select></div>
+  <div><label for="realStars">Real player's HS star rating entering junior year</label><select id="realStars"><option value="">Choose stars</option><option value="1">1 star</option><option value="2">2 stars</option><option value="3">3 stars</option><option value="4">4 stars</option><option value="5">5 stars</option></select></div>
+ </div>
+ <div class="actions"><button class="primary" id="start">Continue →</button></div>
+</section>
+
+<section id="wizard" class="hidden">
+ <div class="progress-wrap"><div class="progress-top"><span id="progressLabel">Step 1</span><span id="progressCount"></span></div><div class="track"><div class="fill" id="progressFill"></div></div></div>
+ <div class="card">
+  <div class="step-title"><div class="step-num" id="stepNumber">1</div><div><div class="eyebrow" id="stepEyebrow">Your career</div><h2 id="stepHeading">High school</h2><div class="hint" id="stepDescription"></div></div></div>
+  <div id="stepContent"></div>
+  <div id="stepMessage" class="notice hidden"></div>
+  <div class="actions"><button class="ghost" id="back">← Back</button><button class="primary" id="next">Continue →</button></div>
+ </div>
+</section>
+
+<section id="finalPage" class="card hidden">
+ <div class="eyebrow">Career complete</div><h2>Your career comparison</h2>
+ <p class="hint">Here's how closely your RTG career matched the real player's career.</p>
+ <div class="score"><div class="score-sub">FINAL SCORE</div><div class="score-num" id="totalScore">—</div><div id="rating" class="score-sub"></div><div class="score-sub">out of 1,000 points</div></div>
+ <div class="breakdown" id="breakdown"></div>
+ <div class="callout" id="finalNotes"></div>
+ <div class="actions"><button class="secondary" id="review">Review entries</button><button class="primary" id="restart">Start a new career</button></div>
+</section>
+<p class="smallprint">Your entries stay in this browser page. Nothing is uploaded to a server.</p>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const statDefs={
+ QB:[["Passing yards",25,"high"],["Passing TDs",25,"high"],["Completion percentage",15,"high"],["Interceptions",15,"low"],["Rushing yards",10,"high"],["Rushing TDs",5,"high"],["Fumbles",5,"low"]],
+ HB:[["Rushing yards",35,"high"],["Rushing TDs",25,"high"],["Receptions",10,"high"],["Receiving yards",10,"high"],["Receiving TDs",10,"high"],["Fumbles",10,"low"]],
+ WR:[["Receptions",25,"high"],["Receiving yards",30,"high"],["Receiving TDs",30,"high"],["Drops",10,"low"],["Fumbles",5,"low"]],
+ MLB:[["Total tackles",30,"high"],["TFL",20,"high"],["Sacks",15,"high"],["Interceptions",15,"high"],["Pass deflections",10,"high"],["Forced fumbles",10,"high"]],
+ CB:[["Interceptions",30,"high"],["Pass deflections",30,"high"],["Total tackles",15,"high"],["TFL",10,"high"],["Forced fumbles",15,"high"]]
+};
+const awardNames=["Heisman Trophy","National position award","First-Team All-American","First-Team All-Conference","National All-Freshman Team","Conference All-Freshman Team"];
+const positionAward={QB:"Davey O'Brien Award",HB:"Doak Walker Award",WR:"Biletnikoff Award",MLB:"Butkus Award",CB:"Jim Thorpe Award"};
+const teamNames=["Bowl appearance","Bowl victory","Conference championship appearance","Conference championship victory","CFP appearance","CFP game victory (won at least one CFP game)","National championship appearance","National championship victory","Final AP Top 25 ranking","10-win season"];
+let config={},steps=[],stepIndex=0,entries={},lastScore=null;
+function idPart(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,"-")}
+function makeSelect(id){return `<select id="${id}"><option value="">Choose…</option><option value="1">Yes</option><option value="0">No</option></select>`}
+function makePair(title,id,sub=""){return `<div class="pair"><div class="pair-title">${title}${sub?` <small>(${sub})</small>`:""}</div><div class="cols"><div><label>Real player</label>${makeSelect(id+"-real")}</div><div><label>Your RTG player</label>${makeSelect(id+"-rtg")}</div></div></div>`}
+function makeStat(title,weight,id){return `<div class="stat"><strong>${title} <small>(${weight}%)</small></strong><div class="cols"><div><label>Real player</label><input type="number" min="0" step="any" id="${id}-real" placeholder="Real"></div><div><label>Your RTG player</label><input type="number" min="0" step="any" id="${id}-rtg" placeholder="RTG"></div></div></div>`}
+function seasonApplicableTeam(j,year){if((j===4||j===5)&&year<2014)return false;if(j===8&&year<1936)return false;return true}
+function buildSteps(){
+ steps=[{type:"highschool",title:"High school",eyebrow:"Recruiting",desc:"Set up your RTG player to match the real player's recruiting profile."}];
+ for(let n=1;n<=config.years;n++)steps.push({type:"season",n,title:["Freshman","Sophomore","Junior","Senior"][n-1]||`Season ${n}`,eyebrow:`College · Season ${n}`,desc:"Enter the real player's season, then compare your RTG results."});
+ steps.push({type:"results",title:"Career results",eyebrow:"Final score",desc:"Review your entries and calculate the career comparison."});
+ stepIndex=0;renderStep();
+}
+function start(){
+ if(!$("realStars").value){alert("Choose the real player's high-school star rating first.");return}
+ config={position:$("position").value,years:Number($("years").value),realStars:Number($("realStars").value)};
+ entries={rtgStars:"",seasons:{}};
+ $("welcome").classList.add("hidden");$("wizard").classList.remove("hidden");$("finalPage").classList.add("hidden");buildSteps();
+}
+function renderStep(){
+ const s=steps[stepIndex];$("stepNumber").textContent=stepIndex+1;$("stepEyebrow").textContent=s.eyebrow;$("stepHeading").textContent=s.title;$("stepDescription").textContent=s.desc;
+ $("progressLabel").textContent=s.eyebrow;$("progressCount").textContent=`${stepIndex+1} of ${steps.length}`;$("progressFill").style.width=((stepIndex+1)/steps.length*100)+"%";
+ $("back").disabled=stepIndex===0;$("back").style.opacity=stepIndex===0?".35":"1";$("next").textContent=s.type==="results"?"Calculate my score →":"Continue →";
+ $("stepMessage").classList.add("hidden");
+ if(s.type==="highschool")renderHighSchool();else if(s.type==="season")renderSeason(s.n);else renderReview();
+}
+function renderHighSchool(){
+ $("stepContent").innerHTML=`<div class="callout"><strong>First, create your RTG player.</strong><br>The real player was a ${config.realStars}-star recruit entering junior year. In CFB 26 RTG, choose a player archetype and starting star rating that matches that level. The game may not offer every exact recruiting profile, so use the closest available match.</div>
+ <div class="grid"><div><label>RTG player's starting high-school star rating</label><select id="rtgStars"><option value="">Choose stars</option>${[1,2,3,4,5].map(x=>`<option value="${x}" ${entries.rtgStars==x?"selected":""}>${x} star${x>1?"s":""}</option>`).join("")}</select></div></div>
+ <div class="callout"><strong>Recruiting score:</strong> Exact star-rating match = 100 points. One star apart = 50 points. Two or more stars apart = 0 points.</div>
+ <p class="hint">You'll enter the college attended for each season on that season's page. This page is just the high-school/recruiting setup.</p>`;
+}
+function seasonData(n){return entries.seasons[n]||(entries.seasons[n]={year:"",realSchool:"",rtgSchool:"",stats:{},awards:{},team:{}})}
+function renderSeason(n){
+ const d=seasonData(n),year=Number(d.year)||0,stats=statDefs[config.position];
+ let statHtml=stats.map(([name,w])=>makeStat(name,w,`s${n}-stat-${idPart(name)}`)).join("");
+ let awards=awardNames.map((name,j)=>{if(n>1&&j>=4)return "";let label=j===1?positionAward[config.position]:name;return makePair(label,`s${n}-award-${j}`)}).join("");
+ let teams=teamNames.map((name,j)=>{if(year&&!seasonApplicableTeam(j,year))return "";return makePair(name,`s${n}-team-${j}`)}).join("");
+ $("stepContent").innerHTML=`<div class="grid"><div><label>Season year</label><input type="number" min="1869" max="2100" id="year-${n}" value="${d.year}" placeholder="e.g. 2022"></div><div><label>Real player's college</label><input id="realSchool-${n}" value="${escapeHtml(d.realSchool)}" placeholder="e.g. BYU"></div><div><label>Your RTG player's college</label><input id="rtgSchool-${n}" value="${escapeHtml(d.rtgSchool)}" placeholder="e.g. BYU"></div></div>
+ <div class="callout"><strong>How to enter this season:</strong> Use regular-season statistics only. Do not include bowl or playoff stats. Enter both players' results separately for every category.</div>
+ <h3>Individual stats <span class="hint">· ${400/config.years} points available this season</span></h3><div class="stat-grid">${statHtml}</div>
+ <h3>Individual achievements <span class="hint">· ${200/config.years} points available across all seasons</span></h3><p class="hint">Choose Yes or No for both players. All-Freshman awards only apply to freshman season; their points are redistributed in later seasons.</p><div class="pair-grid">${awards}</div>
+ <h3>Team achievements</h3><p class="hint">10-win season includes postseason wins. CFP categories and AP Top 25 are automatically omitted if they did not exist in this season's year.</p><div class="pair-grid" id="teamPairs">${teams||'<p class="hint">Enter the season year to see the applicable categories.</p>'}</div>`;
+ // Restore stat and achievement values after rebuilding this season page.
+ for(const [name] of stats){const key=idPart(name),v=d.stats[key]||{};setVal(`s${n}-stat-${key}-real`,v.real);setVal(`s${n}-stat-${key}-rtg`,v.rtg)}
+ for(let j=0;j<awardNames.length;j++){if(n>1&&j>=4)continue;const v=d.awards[j]||{};setVal(`s${n}-award-${j}-real`,v.real);setVal(`s${n}-award-${j}-rtg`,v.rtg)}
+ for(let j=0;j<teamNames.length;j++){if(year&&!seasonApplicableTeam(j,year))continue;const v=d.team[j]||{};setVal(`s${n}-team-${j}-real`,v.real);setVal(`s${n}-team-${j}-rtg`,v.rtg)}
+ $("year-"+n).addEventListener("change",()=>{saveCurrent();renderSeason(n)});
+}
+function setVal(id,v){if(v!==undefined&&v!==null&&$(id))$(id).value=v}
+function escapeHtml(s){return String(s||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function saveCurrent(){
+ const s=steps[stepIndex];if(!s)return;
+ if(s.type==="highschool"){if($("rtgStars"))entries.rtgStars=$("rtgStars").value;return}
+ if(s.type!=="season")return;
+ const n=s.n,d=seasonData(n);d.year=$(`year-${n}`)?.value||"";d.realSchool=$(`realSchool-${n}`)?.value||"";d.rtgSchool=$(`rtgSchool-${n}`)?.value||"";
+ for(const [name] of statDefs[config.position]){const key=idPart(name),base=`s${n}-stat-${key}`;d.stats[key]={real:$(`${base}-real`)?.value??"",rtg:$(`${base}-rtg`)?.value??""}}
+ for(let j=0;j<awardNames.length;j++){if(n>1&&j>=4)continue;const base=`s${n}-award-${j}`;d.awards[j]={real:$(`${base}-real`)?.value??"",rtg:$(`${base}-rtg`)?.value??""}}
+ for(let j=0;j<teamNames.length;j++){const base=`s${n}-team-${j}`;if($(`${base}-real`))d.team[j]={real:$(`${base}-real`).value,rtg:$(`${base}-rtg`).value}}
+}
+function validateCurrent(){
+ saveCurrent();const s=steps[stepIndex];let msg="";
+ if(s.type==="highschool"&&!entries.rtgStars)msg="Choose your RTG player's starting star rating before continuing.";
+ if(s.type==="season"){
+  const n=s.n,d=seasonData(n);
+  if(!d.year||!d.realSchool.trim()||!d.rtgSchool.trim())msg="Enter the season year and both colleges before continuing.";
+  for(const [name] of statDefs[config.position]){const v=d.stats[idPart(name)];if(!v||v.real===""||v.rtg===""){msg=`Enter both players' ${name.toLowerCase()} before continuing.`;break}}
+  for(let j=0;j<awardNames.length&&!msg;j++){if(n>1&&j>=4)continue;const v=d.awards[j];if(!v||v.real===""||v.rtg==="")msg=`Choose Yes or No for both players: ${j===1?positionAward[config.position]:awardNames[j]}.`}
+  for(let j=0;j<teamNames.length&&!msg;j++){if(!seasonApplicableTeam(j,Number(d.year)))continue;const v=d.team[j];if(!v||v.real===""||v.rtg==="")msg=`Choose Yes or No for both players: ${teamNames[j]}.`}
+ }
+ if(msg){$("stepMessage").textContent=msg;$("stepMessage").classList.remove("hidden");$("stepMessage").classList.add("error");return false}
+ return true;
+}
+function statMatch(real,rtg,direction){if(direction==="high"){if(rtg>=real)return 1;if(real===0)return 0;return rtg>=real*.9?.5:0}if(rtg<=real)return 1;if(real===0)return 0;return rtg<=real*1.1?.5:0}
+function calculate(){
+ saveCurrent();let recruiting=config.realStars===Number(entries.rtgStars)?100:Math.abs(config.realStars-Number(entries.rtgStars))===1?50:0,college=0,individual=0,awards=0,team=0;
+ const y=config.years,seasonStats=400/y,seasonAwards=200/y,seasonTeam=200/y;
+ for(let n=1;n<=y;n++){
+  const d=seasonData(n),year=Number(d.year);
+  if(d.realSchool.trim().toLowerCase()===d.rtgSchool.trim().toLowerCase())college+=100/y;
+  for(const [name,w,dir] of statDefs[config.position]){const v=d.stats[idPart(name)];individual+=seasonStats*(w/100)*statMatch(Number(v.real),Number(v.rtg),dir)}
+  const aList=awardNames.map((_,j)=>j).filter(j=>!(n>1&&j>=4)),aValue=seasonAwards/aList.length;
+  for(const j of aList){const v=d.awards[j];if(v.real===v.rtg)awards+=aValue}
+  const tList=teamNames.map((_,j)=>j).filter(j=>seasonApplicableTeam(j,year)),tValue=seasonTeam/tList.length;
+  for(const j of tList){const v=d.team[j];if(v.real===v.rtg)team+=tValue}
+ }
+ const total=recruiting+college+individual+awards+team;
+ const rating=total>=950?"Nearly perfect":total>=900?"Elite recreation":total>=800?"Great recreation":total>=700?"Good recreation":total>=600?"Decent recreation":total>=400?"Below average":"Career divergence";
+ lastScore={total,recruiting,college,individual,awards,team,rating};
+ $("totalScore").textContent=total.toFixed(2);$("rating").textContent=rating;
+ $("breakdown").innerHTML=[["Recruiting",recruiting,100],["College selection",college,100],["Individual stats",individual,400],["Individual achievements",awards,200],["Team achievements",team,200]].map(([name,val,max])=>`<div class="metric">${name}<b>${val.toFixed(2)} / ${max}</b></div>`).join("");
+ $("finalNotes").innerHTML=`Recruiting: ${config.realStars}-star real player vs. ${entries.rtgStars}-star RTG player. Your total is based on matching each season's entered results.`;
+ $("wizard").classList.add("hidden");$("finalPage").classList.remove("hidden");
+}
+function renderReview(){
+ $("stepContent").innerHTML=`<div class="callout"><strong>You're almost done.</strong><br>You've entered the high-school recruiting rating and all ${config.years} college season comparisons. Calculate your score to see the results out of 1,000.</div><p>Position: <strong>${config.position}</strong><br>College seasons: <strong>${config.years}</strong><br>Real player's high-school rating: <strong>${config.realStars} stars</strong><br>RTG player's high-school rating: <strong>${entries.rtgStars} stars</strong></p><p class="hint">You can go back to any season to correct an entry before calculating.</p>`;
+}
+$("start").addEventListener("click",start);
+$("back").addEventListener("click",()=>{saveCurrent();if(stepIndex>0){stepIndex--;renderStep()}else{$("wizard").classList.add("hidden");$("welcome").classList.remove("hidden")}});
+$("next").addEventListener("click",()=>{if(!validateCurrent())return;if(stepIndex===steps.length-1){calculate();return}stepIndex++;renderStep()});
+$("review").addEventListener("click",()=>{$("finalPage").classList.add("hidden");$("wizard").classList.remove("hidden");stepIndex=steps.length-1;renderStep()});
+$("restart").addEventListener("click",()=>{if(confirm("Start a new career? This clears the current entries.")){location.reload()}});
+</script>
+</body>
+</html>
